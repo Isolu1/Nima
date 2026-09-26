@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class PlayerMovements : MonoBehaviour
 {
-    [SerializeField] private float speed = 5f;
-    [SerializeField] private float rotationSpeed = 1000f; // per sec in degre
-
+    [SerializeField] private PlayerStatsSO stats;
     private CharacterController cc;
     private Vector2 input;
     private Vector3 direction;
@@ -29,10 +27,10 @@ public class PlayerMovements : MonoBehaviour
         {
             // rotation
             Quaternion targetRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, stats.rotationSpeed * Time.deltaTime);
 
             // movements
-            cc.Move(direction * speed * Time.deltaTime);
+            cc.Move(direction * stats.speed * Time.deltaTime);
         }
     }
 }
