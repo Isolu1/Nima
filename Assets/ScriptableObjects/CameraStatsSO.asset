@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d764a7712b77df74f91dfe32f8e2769a, type: 3}
   m_Name: CameraStatsSO
   m_EditorClassIdentifier: 
-  offsetPos: {x: -15, y: 19, z: -15}
-  offsetRot: {x: 50, y: 45, z: 0}
+  offsetPos: {x: 0, y: 19, z: -17.5}
+  offsetRot: {x: 50, y: 0, z: 0}
   smoothTime: 0.5
