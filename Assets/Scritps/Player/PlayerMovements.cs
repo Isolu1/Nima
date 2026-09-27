@@ -2,13 +2,18 @@ using UnityEngine;
 
 public class PlayerMovements : MonoBehaviour
 {
-    [SerializeField] private PlayerStatsSO stats;
+    [SerializeField] private PlayerStats stats;
     private CharacterController cc;
     private Vector2 input;
     private Vector3 direction;
 
     void Start()
     {
+        if (!stats)
+        {
+            Debug.LogWarning("PlayerStats NULL in PlayerMovement Script");
+            return;
+        }
         cc = GetComponent<CharacterController>();
     }
 

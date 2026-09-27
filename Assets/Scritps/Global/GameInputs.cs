@@ -19,17 +19,23 @@ public class GameInputs : MonoBehaviour
 
     [Header("Maps")]
     [HideInInspector] public InputActionMap playerMap;
+    [HideInInspector] public InputActionMap cameraMap;
 
 
     [Header("Player")]
     [HideInInspector] public InputAction playerMoveAction;
+
+    [Header("Camera")]
+    [HideInInspector] public InputAction CameraZoomAction;
    
     private void Start()
     {
         // Maps
         playerMap = InputSystem.actions.FindActionMap(Globals.playerMap);
+        cameraMap = InputSystem.actions.FindActionMap(Globals.cameraMap);
 
         // Player
         playerMoveAction = playerMap.FindAction(Globals.playerMove);
+        CameraZoomAction = cameraMap.FindAction(Globals.cameraZoom);
     }
 }
