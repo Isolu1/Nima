@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8be88bfe6d41af64f901e431b55e37ec, type: 3}
   m_Name: CameraStatsSO
   m_EditorClassIdentifier: 
-  maxZoom: 0
-  minZoom: 0
-  zoomSpeed: 0
+  maxZoom: 30
+  minZoom: 60
+  zoomSpeed: 5
