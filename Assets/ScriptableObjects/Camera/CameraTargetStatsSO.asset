@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd93432b44b399e4b997c4063abcc039, type: 3}
-  m_Name: PlayerStatsSO
+  m_Script: {fileID: 11500000, guid: ebab0cf5e6772d845927670eab2e7b61, type: 3}
+  m_Name: CameraTargetStatsSO
   m_EditorClassIdentifier: 
-  speed: 5
-  rotationSpeed: 1000
+  maxForwardSpeed: 8
+  maxBackwardSpeed: 15
+  maxPlayerDistance: 10

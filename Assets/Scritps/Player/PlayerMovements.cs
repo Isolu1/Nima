@@ -3,6 +3,9 @@ using UnityEngine;
 public class PlayerMovements : MonoBehaviour
 {
     [SerializeField] private PlayerStats stats;
+
+    public bool isMoving { get; private set; }
+
     private CharacterController cc;
     private Vector2 input;
     private Vector3 direction;
@@ -23,7 +26,9 @@ public class PlayerMovements : MonoBehaviour
 
         direction = new Vector3(input.x, 0, input.y);
 
-        if (direction.sqrMagnitude > 0.01f)
+        isMoving = direction.sqrMagnitude > 0.01f;
+
+        if (isMoving)
         {
             // rotation
             Quaternion targetRotation = Quaternion.LookRotation(direction);
