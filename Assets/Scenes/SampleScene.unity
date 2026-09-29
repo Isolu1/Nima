@@ -738,7 +738,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 732ce300bddce394b920dac63b7f38a1, type: 2}
   player: {fileID: 1450926438}
-  lookAtTarget: {fileID: 135151917}
+  target: {fileID: 135151917}
 --- !u!4 &1162155253
 Transform:
   m_ObjectHideFlags: 0

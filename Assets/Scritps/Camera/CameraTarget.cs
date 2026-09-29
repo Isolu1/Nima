@@ -5,13 +5,31 @@ public class CameraTarget : MonoBehaviour
 {
     [SerializeField] private CameraTargetStats stats;
     [SerializeField] private GameObject player;
-    [SerializeField] private Transform lookAtTarget;
+    [SerializeField] private Transform target;
 
     private PlayerMovements playerMovements;
     private bool isForwardPlayer = false;
 
 	void Start()
 	{
+        if (!stats)
+        {
+            Debug.LogWarning("CameraTargetStats NULL in CameraTarget script");
+            return;
+        }
+
+        if (!player)
+        {
+            Debug.LogWarning("Player is NULL in CameraTarget script");
+            return;
+        }
+
+        if (!target)
+        {
+            Debug.LogWarning("Target is NULL in CameraTarget script");
+            return;
+        }
+
         playerMovements = player.GetComponent<PlayerMovements>();
 
         transform.position = player.transform.position;
@@ -33,7 +51,7 @@ public class CameraTarget : MonoBehaviour
             Debug.Log("Cam is Backward Player");
         }
 
-        Vector3 directionToTarget = lookAtTarget.position - transform.position;
+        Vector3 directionToTarget = target.position - transform.position;
 
         Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
         transform.rotation = targetRotation;

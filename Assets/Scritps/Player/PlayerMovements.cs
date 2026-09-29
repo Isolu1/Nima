@@ -1,5 +1,7 @@
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterController))]
+
 public class PlayerMovements : MonoBehaviour
 {
     [SerializeField] private PlayerStats stats;
@@ -12,7 +14,19 @@ public class PlayerMovements : MonoBehaviour
 
     void Start()
     {
+        if (!stats)
+        {
+            Debug.LogWarning("PlayerStats NULL in PlayerMovements script");
+            return;
+        }
+
         cc = GetComponent<CharacterController>();
+
+        if (!cc)
+        {
+            Debug.LogWarning("CharacterController is NULL in PlayerMovements script");
+            return;
+        }
     }
 
     void Update()

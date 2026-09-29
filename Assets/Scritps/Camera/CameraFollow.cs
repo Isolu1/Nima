@@ -10,9 +10,16 @@ public class CameraFollow : MonoBehaviour
 	{
         if (!stats)
         {
-            Debug.LogWarning("CameraStats NULL in CameraFollow Script");
+            Debug.LogWarning("CameraStats NULL in CameraFollow script");
             return;
         }
+
+        if (!target)
+        {
+            Debug.LogWarning("Target NULL in CameraFollow script");
+            return;
+        }
+
 
         transform.position = target.transform.position + stats.offsetPos;
 		transform.rotation = Quaternion.Euler(stats.offsetRot);
