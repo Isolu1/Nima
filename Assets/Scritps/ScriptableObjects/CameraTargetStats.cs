@@ -5,6 +5,6 @@ public class CameraTargetStats : ScriptableObject
 {
     public float maxForwardSpeed;   
     public float maxBackwardSpeed;
-
     public float maxPlayerDistance;
+    public float smoothTime;
 }

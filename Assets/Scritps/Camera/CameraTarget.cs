@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -9,6 +10,7 @@ public class CameraTarget : MonoBehaviour
 
     private PlayerMovements playerMovements;
     private bool isForwardPlayer = false;
+    private Vector3 velocity;
 
 	void Start()
 	{
@@ -33,6 +35,7 @@ public class CameraTarget : MonoBehaviour
         playerMovements = player.GetComponent<PlayerMovements>();
 
         transform.position = player.transform.position;
+        velocity = Vector3.zero;
 	}
 
 	void Update()
@@ -76,13 +79,13 @@ public class CameraTarget : MonoBehaviour
 
         if (isForwardPlayer)
         {
-            Vector3 nextPos = transform.position + transform.forward * stats.maxForwardSpeed * Time.deltaTime;
-            transform.position = nextPos;
+            Vector3 nextPos = transform.position + transform.forward * stats.maxForwardSpeed;
+            transform.position = Vector3.SmoothDamp(transform.position, nextPos, ref velocity, stats.smoothTime);
         }
         else
         {
-            Vector3 nextPos = transform.position + transform.forward * stats.maxBackwardSpeed * Time.deltaTime;
-            transform.position = nextPos;
+            Vector3 nextPos = transform.position + transform.forward * stats.maxBackwardSpeed;
+            transform.position = Vector3.SmoothDamp(transform.position, nextPos, ref velocity, stats.smoothTime);
         }
     }
 }
