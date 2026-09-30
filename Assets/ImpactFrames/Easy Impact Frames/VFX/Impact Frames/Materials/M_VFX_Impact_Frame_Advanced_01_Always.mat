@@ -93,7 +93,7 @@ Material:
     - _Colors: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _LUTCoreColor: {r: 0, g: 0, b: 0, a: 0}
-    - _LUTCoreColorInverted: {r: 1, g: 1, b: 1, a: 0}
+    - _LUTCoreColorInverted: {r: 1, g: 0, b: 0.028449535, a: 0}
     - _LUTCoreNoiseSize: {r: 1, g: 0.01, b: 0, a: 0}
     - _LUTCoreNoiseSpeed: {r: 3.333, g: 10, b: 0, a: 0}
     - _Size: {r: 1, g: 0.01, b: 0, a: 0}
