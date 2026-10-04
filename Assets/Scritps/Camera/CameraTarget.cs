@@ -64,16 +64,7 @@ public class CameraTarget : MonoBehaviour
 
         Vector3 posWithPlayer = player.transform.InverseTransformPoint(transform.position);
 
-        if (posWithPlayer.z > 0f)
-        {
-            isForwardPlayer = true;
-            Debug.Log("Cam is Forward Player");
-        }
-        else
-        {
-            isForwardPlayer = false;
-            Debug.Log("Cam is Backward Player");
-        }
+        isForwardPlayer = posWithPlayer.z > 0f;
 
         Vector3 directionToTarget = target.position - transform.position;
 
@@ -87,6 +78,7 @@ public class CameraTarget : MonoBehaviour
     {
         if (!playerStates.isMoving)
         {
+            transform.position = Vector3.SmoothDamp(transform.position, transform.position, ref velocity, cameraTargetStats.smoothTime);
             return;
         }
 

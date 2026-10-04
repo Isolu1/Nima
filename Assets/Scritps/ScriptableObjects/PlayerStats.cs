@@ -9,6 +9,12 @@ public class PlayerStats : ScriptableObject
     [Tooltip("Multiplier to add to speed when sprinting")]
     public float sprintMultiplier;
 
+    [Tooltip("Smooth time when begins sprinting")]
+    public float sprintSmoothTime;
+
+    [Tooltip("Smooth time when stopping")]
+    public float stopSmoothTime;
+
     [Tooltip("Rotation speed of the player")]
     public float rotationSpeed;
 }

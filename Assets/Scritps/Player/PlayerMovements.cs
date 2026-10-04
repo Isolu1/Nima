@@ -12,6 +12,10 @@ public class PlayerMovements : MonoBehaviour
     private Vector2 moveImput; // Movement imput
     private Vector3 direction; // Direction of the player when he moves
 
+    private Vector3 lastMoveDirection; // Last direction movement for deceleration
+    private float currentSpeed; // Actual player speed
+    private float lastFrameSpeed = 0f; // Player speed at last frame (0f at the first frame of the game)
+    private float currentSpeedVelocity; // Velocity for currentSpeed SmoothDamp()
     void Start()
     {
         if (!playerStats)
@@ -48,6 +52,11 @@ public class PlayerMovements : MonoBehaviour
 
         direction = new Vector3(moveImput.x, 0, moveImput.y);
 
+        if (direction.sqrMagnitude > 0.01f)
+        {
+            lastMoveDirection = direction;
+        }
+
         playerStates.isMoving = direction.sqrMagnitude > 0.01f;
 
         if (playerStates.isMoving)
@@ -56,10 +65,17 @@ public class PlayerMovements : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, playerStats.rotationSpeed * Time.deltaTime);
 
-            float currentSpeed = playerStats.speed * (playerStates.isSprinting ? playerStats.sprintMultiplier : 1f) * Time.deltaTime;
-
             // movements
-            cc.Move(direction * currentSpeed);
+            float targetSpeed = playerStats.speed * (playerStates.isSprinting ? playerStats.sprintMultiplier : 1f);
+            currentSpeed = Mathf.SmoothDamp(lastFrameSpeed, targetSpeed, ref currentSpeedVelocity, playerStats.sprintSmoothTime);
+            lastFrameSpeed = currentSpeed;
+
+            cc.Move(direction * currentSpeed * Time.deltaTime);
+        }
+        else
+        {
+            lastFrameSpeed = Mathf.SmoothDamp(lastFrameSpeed, 0f, ref currentSpeedVelocity, playerStats.stopSmoothTime);
+            cc.Move(lastMoveDirection * lastFrameSpeed * Time.deltaTime);
         }
     }
 }

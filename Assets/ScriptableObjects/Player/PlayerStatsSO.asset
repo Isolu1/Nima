@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: PlayerStatsSO
   m_EditorClassIdentifier: 
   speed: 8
+  sprintMultiplier: 1.5
+  sprintSmoothTime: 0.1
+  stopSmoothTime: 0.1
   rotationSpeed: 1000
