@@ -1,6 +1,6 @@
 public static class Globals
 {
-    // IMPUTS
+    // INPUTS
     // Maps
     public static string playerMap = "Player";
 

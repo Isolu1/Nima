@@ -20,8 +20,9 @@ public class CameraTarget : MonoBehaviour
     private PlayerStates playerStates; // PlayerStates script
     private bool isForwardPlayer = false; // Is this object forward the player or not
     private Vector3 velocity; // velocity for "SmoothDamp()"
+    private float cameraSpeed; // Speed of the camera target
 
-	void Start()
+    void Start()
 	{
         if (!cameraTargetStats)
         {
@@ -82,16 +83,22 @@ public class CameraTarget : MonoBehaviour
             return;
         }
 
-        float sqrDistanceToPlayer = (transform.position - player.transform.position).sqrMagnitude;
-        float sqrMaxDistance = cameraTargetStats.maxPlayerDistance * cameraTargetStats.maxPlayerDistance;
-
-        if (sqrDistanceToPlayer >= sqrMaxDistance && isForwardPlayer)
+        if (isForwardPlayer)
         {
-            return;
-        }
+            float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
 
-        Vector3 nextPos = transform.position + transform.forward * (isForwardPlayer ? cameraTargetStats.maxForwardSpeed : cameraTargetStats.maxBackwardSpeed)
+            if (distanceToPlayer > cameraTargetStats.maxPlayerDistance)
+            {
+                cameraSpeed = -playerStats.speed;
+            }
+            else
+            {
+                float ratio = Mathf.Clamp01(distanceToPlayer / cameraTargetStats.maxPlayerDistance);
+                cameraSpeed = Mathf.Lerp(cameraTargetStats.maxBackwardSpeed, playerStats.speed, ratio);
+            }
+        }
+        Vector3 nextPos = transform.position + transform.forward * (isForwardPlayer ? cameraSpeed : cameraTargetStats.maxBackwardSpeed)
                                                                  * (playerStates.isSprinting ? playerStats.sprintMultiplier : 1f);
-        transform.position = Vector3.SmoothDamp(transform.position, nextPos, ref velocity, cameraTargetStats.smoothTime);
+        transform.position = Vector3.SmoothDamp(transform.position, nextPos, ref velocity, cameraTargetStats.smoothTime); 
     }
 }
