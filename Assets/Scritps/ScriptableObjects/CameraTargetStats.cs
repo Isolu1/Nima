@@ -14,4 +14,7 @@ public class CameraTargetStats : ScriptableObject
 
     [Tooltip("Time taken for the camera target to smooth its movement")]
     public float smoothTime;
+
+    [Tooltip("Time taken for the camera target to smooth its movement when its stop")]
+    public float stopSmoothTime;
 }

@@ -78,7 +78,7 @@ public class CameraTarget : MonoBehaviour
     {
         if (!playerStates.isMoving)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, transform.position, ref velocity, cameraTargetStats.smoothTime);
+            transform.position = Vector3.SmoothDamp(transform.position, transform.position, ref velocity, cameraTargetStats.stopSmoothTime);
             return;
         }
 

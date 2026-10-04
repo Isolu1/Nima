@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: CameraTargetStatsSO
   m_EditorClassIdentifier: 
   maxForwardSpeed: 10
-  maxBackwardSpeed: 12
+  maxBackwardSpeed: 13
   maxPlayerDistance: 5
   smoothTime: 1
+  stopSmoothTime: 0.75
