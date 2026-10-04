@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class PlayerMovements : MonoBehaviour
 {
-    [SerializeField] private PlayerStats stats;
+    [Tooltip("PlayerStats scriptable object")]
+    [SerializeField] private PlayerStats playerStats;
 
-    public bool isMoving { get; private set; }
+    [Tooltip("PlayerStates script that is in Player")]
+    [SerializeField] private PlayerState playerStates;
 
-    private CharacterController cc;
-    private Vector2 input;
-    private Vector3 direction;
+    private CharacterController cc; // Player CharacterController
+    private Vector2 moveImput; // Movement imput
+    private Vector3 direction; // Direction of the player when he moves
 
     void Start()
     {
-        if (!stats)
+        if (!playerStats)
         {
             Debug.LogWarning("PlayerStats NULL in PlayerMovements script");
             return;
@@ -36,20 +38,20 @@ public class PlayerMovements : MonoBehaviour
 
     private void Move()
     {
-        input = GameInputs.Instance.playerMoveAction.ReadValue<Vector2>();
+        moveImput = GameInputs.Instance.playerMoveAction.ReadValue<Vector2>();
 
-        direction = new Vector3(input.x, 0, input.y);
+        direction = new Vector3(moveImput.x, 0, moveImput.y);
 
-        isMoving = direction.sqrMagnitude > 0.01f;
+        playerStates.isMoving = direction.sqrMagnitude > 0.01f;
 
-        if (isMoving)
+        if (playerStates.isMoving)
         {
             // rotation
             Quaternion targetRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, stats.rotationSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, playerStats.rotationSpeed * Time.deltaTime);
 
             // movements
-            cc.Move(direction * stats.speed * Time.deltaTime);
+            cc.Move(direction * playerStats.speed * Time.deltaTime);
         }
     }
 }

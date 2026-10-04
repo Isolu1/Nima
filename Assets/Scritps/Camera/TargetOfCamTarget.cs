@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class TargetOfCamTarget : MonoBehaviour
 {
+    [Tooltip("CameraTargetStats scriptable object")]
     [SerializeField] private CameraTargetStats stats;
 
     void Start()

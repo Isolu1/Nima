@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ImpactFrameController : MonoBehaviour
 {
+    [Tooltip("Gameobject VFX that should be played")]
     [SerializeField] private ParticleSystem impactParticleSystem;
 
     void Update()

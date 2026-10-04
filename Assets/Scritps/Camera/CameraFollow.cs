@@ -1,10 +1,13 @@
+using System.ComponentModel;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
+    [Tooltip("CameraStats scriptable object")]
 	[SerializeField] private CameraStats stats;
 
-	[SerializeField] private GameObject target;
+    [Tooltip("GameObject target of the camera (the object that the camera is looking at)")]
+    [SerializeField] private GameObject target;
 
     void Start()
 	{

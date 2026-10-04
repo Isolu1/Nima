@@ -1,16 +1,22 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Playables;
 using static UnityEngine.GraphicsBuffer;
 
 public class CameraTarget : MonoBehaviour
 {
+    [Tooltip("CameraTargetStats scriptable object")]
     [SerializeField] private CameraTargetStats stats;
+
+    [Tooltip("GameObject Player")]
     [SerializeField] private GameObject player;
+
+    [Tooltip("GameObject target of this target (the object that the target chase)")]
     [SerializeField] private Transform target;
 
-    private PlayerMovements playerMovements;
-    private bool isForwardPlayer = false;
-    private Vector3 velocity;
+    private PlayerState playerStates; // PlayerStates script
+    private bool isForwardPlayer = false; // Is this object forward the player or not
+    private Vector3 velocity; // velocity for "SmoothDamp()"
 
 	void Start()
 	{
@@ -32,7 +38,7 @@ public class CameraTarget : MonoBehaviour
             return;
         }
 
-        playerMovements = player.GetComponent<PlayerMovements>();
+        playerStates = player.GetComponent<PlayerState>();
 
         transform.position = player.transform.position;
         velocity = Vector3.zero;
@@ -64,7 +70,7 @@ public class CameraTarget : MonoBehaviour
 
     private void MoveCamTarget()
     {
-        if (!playerMovements.isMoving)
+        if (!playerStates.isMoving)
         {
             return;
         }
