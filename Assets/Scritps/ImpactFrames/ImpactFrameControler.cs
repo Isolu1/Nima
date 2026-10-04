@@ -6,7 +6,7 @@ public class ImpactFrameController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (GameInputs.Instance.ImpactFramesAction.IsPressed())
         {
             TriggerEffect();
         }

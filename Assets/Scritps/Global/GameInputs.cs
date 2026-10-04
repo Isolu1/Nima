@@ -23,6 +23,7 @@ public class GameInputs : MonoBehaviour
 
     [Header("Player")]
     [HideInInspector] public InputAction playerMoveAction;
+    [HideInInspector] public InputAction ImpactFramesAction;
    
     private void Start()
     {
@@ -31,5 +32,6 @@ public class GameInputs : MonoBehaviour
 
         // Player
         playerMoveAction = playerMap.FindAction(Globals.playerMove);
+        ImpactFramesAction = playerMap.FindAction(Globals.impactFrames);
     }
 }
