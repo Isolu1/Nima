@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class GameInputs : MonoBehaviour
 {
@@ -33,5 +34,28 @@ public class GameInputs : MonoBehaviour
         // Player
         playerMoveAction = playerMap.FindAction(Globals.playerMove);
         ImpactFramesAction = playerMap.FindAction(Globals.impactFrames);
+
+        ImputsVerifications();
+    }
+
+    private void ImputsVerifications()
+    {
+        if (playerMap == null)
+        {
+            Debug.LogWarning("playerMap NULL in GameInputs script");
+            return;
+        }
+
+        if (playerMoveAction == null)
+        {
+            Debug.LogWarning("playerMoveAction NULL in GameInputs script");
+            return;
+        }
+
+        if (ImpactFramesAction == null)
+        {
+            Debug.LogWarning("ImpactFramesAction NULL in GameInputs script");
+            return;
+        }
     }
 }

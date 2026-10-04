@@ -511,6 +511,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: VFX_Impact_Frame_01
       objectReference: {fileID: 0}
+    - target: {fileID: 7492697174560805583, guid: 66209373dd5e22140a220a74414d244b, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7706514274498345828, guid: 66209373dd5e22140a220a74414d244b, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -888,7 +896,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3321530164917747349, guid: c2365dbcb78bc5e41b51bc5ddaa0bef8, type: 3}
   m_PrefabInstance: {fileID: 698896470363573775}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1450926444
+--- !u!4 &1450926445 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2905733263362254322, guid: c2365dbcb78bc5e41b51bc5ddaa0bef8, type: 3}
+  m_PrefabInstance: {fileID: 698896470363573775}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1450926446
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -897,15 +910,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1450926438}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 263a09b059b1e3148845371ba5dc7ec1, type: 3}
+  m_Script: {fileID: 11500000, guid: 0064e6c732ce4a24c80a4ef038e1829d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  impactParticleSystem: {fileID: 854047016}
---- !u!4 &1450926445 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2905733263362254322, guid: c2365dbcb78bc5e41b51bc5ddaa0bef8, type: 3}
-  m_PrefabInstance: {fileID: 698896470363573775}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1575098009
 GameObject:
   m_ObjectHideFlags: 0
@@ -954,8 +961,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1678324840}
-  - component: {fileID: 1678324839}
   - component: {fileID: 1678324841}
+  - component: {fileID: 1678324842}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -963,42 +970,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1678324839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1678324838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c89dcf8a180cc4842872c927562ce770, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerMap:
-    m_Name: 
-    m_Id: 
-    m_Asset: {fileID: 0}
-    m_Actions: []
-    m_Bindings: []
-  playerMoveAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 5d4bf480-1683-4fe3-9596-5a91c7afb91e
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  ImpactFramesAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: ac5a2518-9329-4111-8449-317baaf03544
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
 --- !u!4 &1678324840
 Transform:
   m_ObjectHideFlags: 0
@@ -1026,7 +997,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 263a09b059b1e3148845371ba5dc7ec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  impactParticleSystem: {fileID: 0}
+  impactParticleSystem: {fileID: 854047016}
+--- !u!114 &1678324842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678324838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c89dcf8a180cc4842872c927562ce770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMap:
+    m_Name: 
+    m_Id: 
+    m_Asset: {fileID: 0}
+    m_Actions: []
+    m_Bindings: []
+  playerMoveAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: d9e50475-6a67-4644-85c7-a732ef2d3db4
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  ImpactFramesAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 1518bf09-d9f9-4ae3-b54d-02da91bc46c6
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!1 &1701534151
 GameObject:
   m_ObjectHideFlags: 0
@@ -1206,6 +1213,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -941491063280931455, guid: c2365dbcb78bc5e41b51bc5ddaa0bef8, type: 3}
+      propertyPath: playerStats
+      value: 
+      objectReference: {fileID: 11400000, guid: 29d488b931945234e81022fe48f11249, type: 2}
+    - target: {fileID: -941491063280931455, guid: c2365dbcb78bc5e41b51bc5ddaa0bef8, type: 3}
+      propertyPath: playerStates
+      value: 
+      objectReference: {fileID: 1450926446}
     - target: {fileID: 2185576012624350679, guid: c2365dbcb78bc5e41b51bc5ddaa0bef8, type: 3}
       propertyPath: m_Icon
       value: 
@@ -1275,7 +1290,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3321530164917747349, guid: c2365dbcb78bc5e41b51bc5ddaa0bef8, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1450926444}
+      addedObject: {fileID: 1450926446}
   m_SourcePrefab: {fileID: 100100000, guid: c2365dbcb78bc5e41b51bc5ddaa0bef8, type: 3}
 --- !u!1001 &887196814493336552
 PrefabInstance:

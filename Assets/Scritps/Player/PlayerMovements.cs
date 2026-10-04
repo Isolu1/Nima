@@ -7,10 +7,8 @@ public class PlayerMovements : MonoBehaviour
     [Tooltip("PlayerStats scriptable object")]
     [SerializeField] private PlayerStats playerStats;
 
-    [Tooltip("PlayerStates script that is in Player")]
-    [SerializeField] private PlayerState playerStates;
-
     private CharacterController cc; // Player CharacterController
+    private PlayerStates playerStates; // PlayerStates script
     private Vector2 moveImput; // Movement imput
     private Vector3 direction; // Direction of the player when he moves
 
@@ -23,10 +21,17 @@ public class PlayerMovements : MonoBehaviour
         }
 
         cc = GetComponent<CharacterController>();
+        playerStates = GetComponent<PlayerStates>();
 
         if (!cc)
         {
             Debug.LogWarning("CharacterController is NULL in PlayerMovements script");
+            return;
+        }
+
+        if (!playerStates)
+        {
+            Debug.LogWarning("PlayerStates is NULL in PlayerMovements script");
             return;
         }
     }

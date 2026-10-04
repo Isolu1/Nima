@@ -14,7 +14,7 @@ public class CameraTarget : MonoBehaviour
     [Tooltip("GameObject target of this target (the object that the target chase)")]
     [SerializeField] private Transform target;
 
-    private PlayerState playerStates; // PlayerStates script
+    private PlayerStates playerStates; // PlayerStates script
     private bool isForwardPlayer = false; // Is this object forward the player or not
     private Vector3 velocity; // velocity for "SmoothDamp()"
 
@@ -38,7 +38,13 @@ public class CameraTarget : MonoBehaviour
             return;
         }
 
-        playerStates = player.GetComponent<PlayerState>();
+        playerStates = player.GetComponent<PlayerStates>();
+
+        if (!playerStates)
+        {
+            Debug.LogWarning("PlayerStates is NULL in CameraTarget script (No PlayerStates in Player)");
+            return;
+        }
 
         transform.position = player.transform.position;
         velocity = Vector3.zero;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerState : MonoBehaviour
+public class PlayerStates : MonoBehaviour
 {
     // Player differents states
     public bool isMoving { get; set; }
