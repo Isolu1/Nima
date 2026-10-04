@@ -24,6 +24,7 @@ public class GameInputs : MonoBehaviour
 
     [Header("Player")]
     [HideInInspector] public InputAction playerMoveAction;
+    [HideInInspector] public InputAction playerSprintAction;
     [HideInInspector] public InputAction ImpactFramesAction;
    
     private void Start()
@@ -33,6 +34,7 @@ public class GameInputs : MonoBehaviour
 
         // Player
         playerMoveAction = playerMap.FindAction(Globals.playerMove);
+        playerSprintAction = playerMap.FindAction(Globals.playerSprint);
         ImpactFramesAction = playerMap.FindAction(Globals.impactFrames);
 
         ImputsVerifications();
@@ -49,6 +51,12 @@ public class GameInputs : MonoBehaviour
         if (playerMoveAction == null)
         {
             Debug.LogWarning("playerMoveAction NULL in GameInputs script");
+            return;
+        }
+
+        if (playerSprintAction == null)
+        {
+            Debug.LogWarning("playerSprintAction NULL in GameInputs script");
             return;
         }
 

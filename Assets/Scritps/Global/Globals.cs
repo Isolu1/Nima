@@ -6,5 +6,6 @@ public static class Globals
 
     // Bindings
     public static string playerMove = "PlayerMove";
+    public static string playerSprint = "PlayerSprint";
     public static string impactFrames = "ImpactFrames";
 }

@@ -44,6 +44,7 @@ public class PlayerMovements : MonoBehaviour
     private void Move()
     {
         moveImput = GameInputs.Instance.playerMoveAction.ReadValue<Vector2>();
+        playerStates.isSprinting = GameInputs.Instance.playerSprintAction.IsPressed();
 
         direction = new Vector3(moveImput.x, 0, moveImput.y);
 
@@ -55,8 +56,10 @@ public class PlayerMovements : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, playerStats.rotationSpeed * Time.deltaTime);
 
+            float currentSpeed = playerStats.speed * (playerStates.isSprinting ? playerStats.sprintMultiplier : 1f) * Time.deltaTime;
+
             // movements
-            cc.Move(direction * playerStats.speed * Time.deltaTime);
+            cc.Move(direction * currentSpeed);
         }
     }
 }

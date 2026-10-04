@@ -6,7 +6,10 @@ using static UnityEngine.GraphicsBuffer;
 public class CameraTarget : MonoBehaviour
 {
     [Tooltip("CameraTargetStats scriptable object")]
-    [SerializeField] private CameraTargetStats stats;
+    [SerializeField] private CameraTargetStats cameraTargetStats;
+
+    [Tooltip("PlayerStats scriptable object")]
+    [SerializeField] private PlayerStats playerStats;
 
     [Tooltip("GameObject Player")]
     [SerializeField] private GameObject player;
@@ -20,9 +23,15 @@ public class CameraTarget : MonoBehaviour
 
 	void Start()
 	{
-        if (!stats)
+        if (!cameraTargetStats)
         {
             Debug.LogWarning("CameraTargetStats NULL in CameraTarget script");
+            return;
+        }
+
+        if (!playerStats)
+        {
+            Debug.LogWarning("PlayerStats NULL in PlayerMovements script");
             return;
         }
 
@@ -82,22 +91,15 @@ public class CameraTarget : MonoBehaviour
         }
 
         float sqrDistanceToPlayer = (transform.position - player.transform.position).sqrMagnitude;
-        float sqrMaxDistance = stats.maxPlayerDistance * stats.maxPlayerDistance;
+        float sqrMaxDistance = cameraTargetStats.maxPlayerDistance * cameraTargetStats.maxPlayerDistance;
 
         if (sqrDistanceToPlayer >= sqrMaxDistance && isForwardPlayer)
         {
             return;
         }
 
-        if (isForwardPlayer)
-        {
-            Vector3 nextPos = transform.position + transform.forward * stats.maxForwardSpeed;
-            transform.position = Vector3.SmoothDamp(transform.position, nextPos, ref velocity, stats.smoothTime);
-        }
-        else
-        {
-            Vector3 nextPos = transform.position + transform.forward * stats.maxBackwardSpeed;
-            transform.position = Vector3.SmoothDamp(transform.position, nextPos, ref velocity, stats.smoothTime);
-        }
+        Vector3 nextPos = transform.position + transform.forward * (isForwardPlayer ? cameraTargetStats.maxForwardSpeed : cameraTargetStats.maxBackwardSpeed)
+                                                                 * (playerStates.isSprinting ? playerStats.sprintMultiplier : 1f);
+        transform.position = Vector3.SmoothDamp(transform.position, nextPos, ref velocity, cameraTargetStats.smoothTime);
     }
 }
