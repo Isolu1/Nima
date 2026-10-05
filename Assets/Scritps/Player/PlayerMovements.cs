@@ -16,6 +16,9 @@ public class PlayerMovements : MonoBehaviour
     private float currentSpeed; // Actual player speed
     private float lastFrameSpeed = 0f; // Player speed at last frame (0f at the first frame of the game)
     private float currentSpeedVelocity; // Velocity for currentSpeed SmoothDamp()
+
+    private Vector3 lastPosition;
+
     void Start()
     {
         if (!playerStats)
@@ -38,12 +41,30 @@ public class PlayerMovements : MonoBehaviour
             Debug.LogWarning("PlayerStates is NULL in PlayerMovements script");
             return;
         }
+        
+        lastPosition = transform.position;
     }
 
     void Update()
     {
-        Debug.Log(playerStates.isMoving);
         Move();
+
+        Vector3 currentPosition = transform.position;
+        float distanceMoved = Vector3.Distance(currentPosition, lastPosition);
+        bool isActuallyMoving = distanceMoved > 0.00001f;
+
+        if (GameInputs.Instance.isMovePlayerAction && !isActuallyMoving)
+        {
+            playerStates.isMoving = false;
+        }
+        else
+        {
+            playerStates.isMoving = GameInputs.Instance.isMovePlayerAction;
+        }
+
+        Debug.Log("is moving " + playerStates.isMoving);
+
+        lastPosition = currentPosition;
     }
 
     private void Move()
@@ -58,7 +79,7 @@ public class PlayerMovements : MonoBehaviour
             GameInputs.Instance.isMovePlayerAction = true;
         }
 
-        GameInputs.Instance.isMovePlayerAction = GameInputs.Instance.playerSprintAction.IsPressed();
+        GameInputs.Instance.isSprintPlayerAction = GameInputs.Instance.playerSprintAction.IsPressed();
 
         direction = new Vector3(moveImput.x, 0, moveImput.y);
 
@@ -67,16 +88,15 @@ public class PlayerMovements : MonoBehaviour
             lastMoveDirection = direction;
         }
 
-        playerStates.isMoving = direction.sqrMagnitude > 0.01f;
-
-        if (playerStates.isMoving)
+        bool shouldMove = direction.sqrMagnitude > 0.01f;
+        if (shouldMove)
         {
             // rotation
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, playerStats.rotationSpeed * Time.deltaTime);
 
             // movements
-            float targetSpeed = playerStats.speed * (GameInputs.Instance.isPlayerSprintAction ? playerStats.sprintMultiplier : 1f);
+            float targetSpeed = playerStats.speed * (GameInputs.Instance.isSprintPlayerAction ? playerStats.sprintMultiplier : 1f);
             currentSpeed = Mathf.SmoothDamp(lastFrameSpeed, targetSpeed, ref currentSpeedVelocity, playerStats.sprintSmoothTime);
             lastFrameSpeed = currentSpeed;
 

@@ -1,4 +1,5 @@
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Playables;
 using static UnityEngine.GraphicsBuffer;
@@ -21,9 +22,9 @@ public class CameraTarget : MonoBehaviour
     private bool isForwardPlayer = false; // Is this object forward the player or not
     private Vector3 velocity; // velocity for "SmoothDamp()"
     private float cameraSpeed; // Speed of the camera target
-
+    private float distanceToPlayer = 0;
     void Start()
-	{
+    {
         if (!cameraTargetStats)
         {
             Debug.LogWarning("CameraTargetStats NULL in CameraTarget script");
@@ -58,10 +59,10 @@ public class CameraTarget : MonoBehaviour
 
         transform.position = player.transform.position;
         velocity = Vector3.zero;
-	}
+    }
 
-	void Update()
-	{
+    void Update()
+    {
 
         Vector3 posWithPlayer = player.transform.InverseTransformPoint(transform.position);
 
@@ -77,19 +78,35 @@ public class CameraTarget : MonoBehaviour
 
     private void MoveCamTarget()
     {
+        distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
+
         if (!playerStates.isMoving)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, transform.position, ref velocity, cameraTargetStats.stopSmoothTime);
-            return;
+            if (GameInputs.Instance.isMovePlayerAction)
+            {
+                if (distanceToPlayer >= cameraTargetStats.maxPlayerDistance && isForwardPlayer)
+                {
+                    transform.position = target.position;
+                }
+                return;
+            }
+            else
+            {
+                transform.position = Vector3.SmoothDamp(transform.position, transform.position, ref velocity, cameraTargetStats.stopSmoothTime);
+                return;
+            }
         }
+
 
         if (isForwardPlayer)
         {
-            float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
-
-            if (distanceToPlayer > cameraTargetStats.maxPlayerDistance)
+            if (distanceToPlayer / 2 > cameraTargetStats.maxPlayerDistance)
             {
-                cameraSpeed = -playerStats.speed;
+                transform.position = target.position;
+            }
+            else if (distanceToPlayer >= cameraTargetStats.maxPlayerDistance)
+            {
+                cameraSpeed = playerStats.speed;
             }
             else
             {
@@ -99,6 +116,6 @@ public class CameraTarget : MonoBehaviour
         }
         Vector3 nextPos = transform.position + transform.forward * (isForwardPlayer ? cameraSpeed : cameraTargetStats.maxBackwardSpeed)
                                                                  * (playerStates.isSprinting ? playerStats.sprintMultiplier : 1f);
-        transform.position = Vector3.SmoothDamp(transform.position, nextPos, ref velocity, cameraTargetStats.smoothTime); 
+        transform.position = Vector3.SmoothDamp(transform.position, nextPos, ref velocity, cameraTargetStats.smoothTime);
     }
 }

@@ -28,7 +28,7 @@ public class GameInputs : MonoBehaviour
 
     [Header("Check Inputs")]
     [HideInInspector] public bool isMovePlayerAction { get; set; }
-    [HideInInspector] public bool isPlayerSprintAction { get; set; }
+    [HideInInspector] public bool isSprintPlayerAction { get; set; }
     [HideInInspector] public bool isImpactFramesAction { get; set; }
 
     private void Start()
