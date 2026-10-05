@@ -42,13 +42,23 @@ public class PlayerMovements : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(playerStates.isMoving);
         Move();
     }
 
     private void Move()
     {
         moveImput = GameInputs.Instance.playerMoveAction.ReadValue<Vector2>();
-        playerStates.isSprinting = GameInputs.Instance.playerSprintAction.IsPressed();
+        if (moveImput == Vector2.zero)
+        {
+            GameInputs.Instance.isMovePlayerAction = false;
+        }
+        else
+        {
+            GameInputs.Instance.isMovePlayerAction = true;
+        }
+
+        GameInputs.Instance.isMovePlayerAction = GameInputs.Instance.playerSprintAction.IsPressed();
 
         direction = new Vector3(moveImput.x, 0, moveImput.y);
 
@@ -66,7 +76,7 @@ public class PlayerMovements : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, playerStats.rotationSpeed * Time.deltaTime);
 
             // movements
-            float targetSpeed = playerStats.speed * (playerStates.isSprinting ? playerStats.sprintMultiplier : 1f);
+            float targetSpeed = playerStats.speed * (GameInputs.Instance.isPlayerSprintAction ? playerStats.sprintMultiplier : 1f);
             currentSpeed = Mathf.SmoothDamp(lastFrameSpeed, targetSpeed, ref currentSpeedVelocity, playerStats.sprintSmoothTime);
             lastFrameSpeed = currentSpeed;
 

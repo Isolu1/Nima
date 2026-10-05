@@ -41,7 +41,12 @@ public class ImpactFrameController : MonoBehaviour
     {
         if (GameInputs.Instance.ImpactFramesAction.WasPressedThisFrame())
         {
+            GameInputs.Instance.isImpactFramesAction = true;
             TriggerEffect();
+        }
+        else
+        {
+            GameInputs.Instance.isImpactFramesAction = false;
         }
 
         if (isPlayingVFX)

@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 
 public class GameInputs : MonoBehaviour
 {
@@ -26,7 +25,12 @@ public class GameInputs : MonoBehaviour
     [HideInInspector] public InputAction playerMoveAction;
     [HideInInspector] public InputAction playerSprintAction;
     [HideInInspector] public InputAction ImpactFramesAction;
-   
+
+    [Header("Check Inputs")]
+    [HideInInspector] public bool isMovePlayerAction { get; set; }
+    [HideInInspector] public bool isPlayerSprintAction { get; set; }
+    [HideInInspector] public bool isImpactFramesAction { get; set; }
+
     private void Start()
     {
         // Maps
