@@ -114,6 +114,17 @@
                 },
                 {
                     "name": "",
+                    "id": "4b821372-67b6-4ac1-96b5-0dd68d6eba60",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ImpactFrames",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "b424baa9-fe19-428f-9923-443d548b5454",
                     "path": "<Keyboard>/shift",
                     "interactions": "",

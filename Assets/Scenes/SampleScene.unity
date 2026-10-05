@@ -839,6 +839,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0064e6c732ce4a24c80a4ef038e1829d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1450926447 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -941491063280931455, guid: c2365dbcb78bc5e41b51bc5ddaa0bef8, type: 3}
+  m_PrefabInstance: {fileID: 698896470363573775}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450926438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3ab6e44cfd78f843b284fabf69df460, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1575098009
 GameObject:
   m_ObjectHideFlags: 0
@@ -887,8 +898,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1678324840}
-  - component: {fileID: 1678324841}
   - component: {fileID: 1678324842}
+  - component: {fileID: 1678324841}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -924,6 +935,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactParticleSystem: {fileID: 6141143759046777167}
+  playerMovements: {fileID: 1450926447}
+  cameraMovements: {fileID: 1162155252}
+  delayTimer: 0.3
 --- !u!114 &1678324842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1276,7 +1290,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2905733263362254322, guid: c2365dbcb78bc5e41b51bc5ddaa0bef8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 11.812374
       objectReference: {fileID: 0}
     - target: {fileID: 2905733263362254322, guid: c2365dbcb78bc5e41b51bc5ddaa0bef8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1284,7 +1298,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2905733263362254322, guid: c2365dbcb78bc5e41b51bc5ddaa0bef8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 9.062254
       objectReference: {fileID: 0}
     - target: {fileID: 2905733263362254322, guid: c2365dbcb78bc5e41b51bc5ddaa0bef8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -79899,8 +79913,8 @@ Light:
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 1
+  m_Intensity: 50
+  m_Range: 1.25
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -79944,7 +79958,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0.2391119, y: -2.7416174, z: -13.351498, w: 1}
+  m_BoundingSphereOverride: {x: 9.1835e-41, y: 2.0387484e-38, z: 4.5697343e-37, w: 4.1326e-40}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0

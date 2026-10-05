@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebab0cf5e6772d845927670eab2e7b61, type: 3}
   m_Name: CameraTargetStatsSO
   m_EditorClassIdentifier: 
-  maxForwardSpeed: 10
   maxBackwardSpeed: 13
   maxPlayerDistance: 5
   smoothTime: 1
