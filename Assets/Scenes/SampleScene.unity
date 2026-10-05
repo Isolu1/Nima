@@ -937,7 +937,7 @@ MonoBehaviour:
   impactParticleSystem: {fileID: 6141143759046777167}
   playerMovements: {fileID: 1450926447}
   cameraMovements: {fileID: 1162155252}
-  delayTimer: 0.3
+  vfxLifetime: 0.3
 --- !u!114 &1678324842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25766,7 +25766,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -27016,8 +27016,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0.2117647, b: 0.5420279, a: 1}
-        key1: {r: 1, g: 0, b: 0.24449539, a: 0}
+        key0: {r: 0.76729554, g: 0.012064317, b: 0.32768342, a: 1}
+        key1: {r: 0.7773338, g: 0.011543896, b: 0.8117647, a: 1}
         key2: {r: 1, g: 0, b: 0.24449539, a: 0}
         key3: {r: 0.1981132, g: 0, b: 0.048168723, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -27025,16 +27025,16 @@ ParticleSystem:
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
-        ctime1: 65535
-        ctime2: 10023
+        ctime1: 40606
+        ctime2: 65535
         ctime3: 65150
         ctime4: 0
         ctime5: 0
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 65535
-        atime2: 0
+        atime1: 40863
+        atime2: 65535
         atime3: 0
         atime4: 0
         atime5: 0
@@ -27042,8 +27042,8 @@ ParticleSystem:
         atime7: 0
         m_Mode: 0
         m_ColorSpace: 0
-        m_NumColorKeys: 2
-        m_NumAlphaKeys: 2
+        m_NumColorKeys: 3
+        m_NumAlphaKeys: 3
       minGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -79912,9 +79912,9 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 2
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.7764706}
   m_Intensity: 50
-  m_Range: 1.25
+  m_Range: 1.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -79958,7 +79958,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 9.1835e-41, y: 2.0387484e-38, z: 4.5697343e-37, w: 4.1326e-40}
+  m_BoundingSphereOverride: {x: 6.07e-43, y: -1.4682626e+22, z: 6.05e-43, w: -1.3507351e-38}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0

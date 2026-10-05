@@ -5,18 +5,34 @@ public class ImpactFrameController : MonoBehaviour
     [Tooltip("Gameobject VFX that should be played")]
     [SerializeField] private ParticleSystem impactParticleSystem;
 
-
+    [Tooltip("PlayerMovements script from Player gameObject")]
     [SerializeField] private PlayerMovements playerMovements;
+
+    [Tooltip("CameraTarget script from CameraTarget gameObject")]
     [SerializeField] private CameraTarget cameraMovements;
-    [SerializeField] private float delayTimer = 0.3f;
-    private float timer = 0f;
-    private bool isPlayingVFX = false;
+
+    [Tooltip("VFX lifetime")]
+    [SerializeField] private float vfxLifetime = 0.3f;
+    private float timer = 0f; // Timer count
+    private bool isPlayingVFX = false; // Is the VFX actually playing
 
     private void Start()
     {
         if (!impactParticleSystem)
         {
             Debug.LogWarning("impactParticleSystem NULL in ImpactFrameController script");
+            return;
+        }
+
+        if (!playerMovements)
+        {
+            Debug.LogWarning("playerMovements NULL in ImpactFrameController script");
+            return;
+        }
+
+        if (!cameraMovements)
+        {
+            Debug.LogWarning("cameraMovements NULL in ImpactFrameController script");
             return;
         }
     }
@@ -34,7 +50,7 @@ public class ImpactFrameController : MonoBehaviour
             cameraMovements.enabled = false;
             timer += Time.deltaTime;
 
-            if (timer >= delayTimer)
+            if (timer >= vfxLifetime)
             {
                 timer = 0f;
                 isPlayingVFX = false;

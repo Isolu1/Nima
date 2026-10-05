@@ -11,10 +11,10 @@ public class CameraTarget : MonoBehaviour
     [Tooltip("PlayerStats scriptable object")]
     [SerializeField] private PlayerStats playerStats;
 
-    [Tooltip("GameObject Player")]
+    [Tooltip("Player GameObject")]
     [SerializeField] private GameObject player;
 
-    [Tooltip("GameObject target of this target (the object that the target chase)")]
+    [Tooltip("target GameObject of this target (the object that the target chase)")]
     [SerializeField] private Transform target;
 
     private PlayerStates playerStates; // PlayerStates script
