@@ -88,6 +88,7 @@ public class CameraTarget : MonoBehaviour
                 {
                     transform.position = target.position;
                 }
+                velocity = Vector3.zero;
                 return;
             }
             else
