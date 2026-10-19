@@ -1,9 +1,20 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerStatsSO", menuName = "ScriptableObjects/PlayerStatsSO")]
-public class PlayerStatsSO : ScriptableObject
+public class PlayerStats : ScriptableObject
 {
-    [Header("Mouvements")]
-    public float speed = 5f;
-    public float rotationSpeed = 1000f;
+    [Tooltip("Speed of the player")]
+    public float speed;
+
+    [Tooltip("Multiplier to add to speed when sprinting")]
+    public float sprintMultiplier;
+
+    [Tooltip("Smooth time when begins sprinting")]
+    public float sprintSmoothTime;
+
+    [Tooltip("Smooth time when stopping")]
+    public float stopSmoothTime;
+
+    [Tooltip("Rotation speed of the player")]
+    public float rotationSpeed;
 }
